@@ -20,7 +20,7 @@ type FluentdAdapter struct {
 }
 
 type Record struct {
-	Message string `json:"message"`
+	Log string `json:"log"`
 	Host string `json:"host"`
 	Docker Docker `json:"docker"`
 }
@@ -65,7 +65,7 @@ func (adapter *FluentdAdapter) Stream(logstream chan *router.Message) {
 		hname, _ := os.Hostname()
 
 		record := Record{}
-		record.Message = message.Data
+		record.Log = message.Data
 		record.Host = hname
 		record.Docker = Docker{}
 		record.Docker.Id = message.Container.ID
